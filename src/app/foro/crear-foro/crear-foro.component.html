@@ -1,0 +1,10 @@
+<p>crear-foro works!</p>
+<form (ngSubmit)='agregarForo()'>
+  <input
+  id='nombreForo'
+  type='text'
+  name='nombreForo'
+  [(ngModel)]='nombreForo'>
+  <button type="submit"  >agregar</button>
+</form>
+<button [routerLink]="['/foro/list']" >volver</button>

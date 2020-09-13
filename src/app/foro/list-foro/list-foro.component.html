@@ -1,0 +1,9 @@
+<p>list-foro works!</p>
+<div>
+  <ul>
+    <li *ngFor='let foro of foros' (click)='selectForo(foro)'>
+      {{foro.nombre}}
+    </li>
+  </ul>
+  <button [routerLink]="['/foro/crear']">crear Foro</button>
+</div>
