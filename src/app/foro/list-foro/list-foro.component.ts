@@ -16,17 +16,18 @@ export class ListForoComponent implements OnInit {
   constructor(private foroRepo: ServiceForoService) { }
 
   loadForos(): any {
-    this.foros = this.foroRepo.getForoArray();
-    console.log('loading');
+    this.foroRepo.findAllForos().subscribe(
+      results => {
+        console.log(results);
+        this.foros = results;
+      },
+      error => console.error(error)
+    );
   }
 
   selectForo(foro: Foro): void {
     this.selectedForo = foro;
   }
-
- /* deleteForo(id): void {
-    this.mensaje = 'Foroa borrada ' + id;
-  }*/
 
   ngOnInit(): void {
     this.loadForos();
