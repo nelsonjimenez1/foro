@@ -1,9 +1,1 @@
 <p>view-foro works!</p>
-<div>
-  <ul>
-    <li *ngFor='let tema of temas' (click)='selectTema(tema)' [routerLink]="['/tema/view', tema.id]">
-      {{tema.titulo}}
-    </li>
-  </ul>
-  <button [routerLink]="['/tema/crear', foro.id]">Crear tema</button>
-</div>

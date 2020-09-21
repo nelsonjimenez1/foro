@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Foro } from './../Foro';
-import { Tema } from './../../tema/Tema';
 import { ServiceForoService } from './../service-foro.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
@@ -11,30 +10,13 @@ import { switchMap } from 'rxjs/operators';
   styleUrls: ['./view-foro.component.css']
 })
 export class ViewForoComponent implements OnInit {
-  temas: Tema[];
   foro: Foro = null;
-  selectedTema: Tema =  null;
 
   constructor(
     private foroRepo: ServiceForoService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
   ) { }
-
-  loadTemas(): any {
-    this.foroRepo.findAllTemas(this.foro.id).subscribe(
-      results => {
-        console.log(results);
-        this.temas = results;
-      },
-      error => console.error(error)
-    );
-  }
-
-  selectTema(tema: Tema): void {
-    this.selectedTema = tema;
-    console.log(this.selectedTema)
-  }
 
   ngOnInit(): void {
     this.route.paramMap
@@ -44,7 +26,6 @@ export class ViewForoComponent implements OnInit {
     .subscribe(result => {
       console.log(result);
       this.foro = result;
-      this.loadTemas();
     });
   }
 }
