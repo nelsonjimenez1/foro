@@ -12,7 +12,7 @@ import { switchMap } from 'rxjs/operators';
 })
 export class ViewForoComponent implements OnInit {
   temas: Tema[];
-  foro: Foro = null;
+  foro: Foro = new Foro('prueba');
   selectedTema: Tema =  null;
 
   constructor(
@@ -37,6 +37,7 @@ export class ViewForoComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.foro.id = -6;
     this.route.paramMap
     .pipe(
       switchMap(params => this.foroRepo.findById(+params.get('id')))

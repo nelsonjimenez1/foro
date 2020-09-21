@@ -1,9 +1,11 @@
 <p>list-foro works!</p>
 <div>
   <ul  class="containerlist">
-    <li *ngFor='let foro of foros' (click)='selectForo(foro)' [routerLink]="['/foro/view', foro.id]">
+    <li *ngFor='let foro of foros' (click)='selectForo(foro)' >
       {{foro.nombre}}
     </li>
   </ul>
   <button [routerLink]="['/foro/crear']">Crear foro</button>
+  <button [routerLink]="['/foro/view', selectedForo.id]">Mirar foro</button>
+  <button (click)='deleteForo(selectedForo.id)'>Eliminar foro</button>
 </div>

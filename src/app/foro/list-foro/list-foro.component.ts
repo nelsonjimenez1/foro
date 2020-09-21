@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListForoComponent implements OnInit {
   foros: Foro[];
-  selectedForo: Foro = null;
+  selectedForo: Foro = new Foro('prueba');
 
   constructor(private foroRepo: ServiceForoService) {}
 
@@ -28,8 +28,18 @@ export class ListForoComponent implements OnInit {
     console.log(this.selectedForo)
   }
 
-  ngOnInit(): void {
-    this.loadForos();
+  deleteForo(id: number): void {
+    this.foroRepo.deleteById(id).subscribe(
+      results => {
+        console.log(results);
+        this.loadForos();
+      },
+      error => console.error(error)
+    );
   }
 
+  ngOnInit(): void {
+    this.loadForos();
+    this.selectedForo.id = -6;
+  }
 }
