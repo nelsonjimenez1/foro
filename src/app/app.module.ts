@@ -8,6 +8,7 @@ import { CrearForoComponent } from './foro/crear-foro/crear-foro.component';
 import { ListForoComponent } from './foro/list-foro/list-foro.component';
 import { ViewForoComponent } from './foro/view-foro/view-foro.component';
 import { ViewTemaComponent } from './tema/view-tema/view-tema.component';
+import { CrearTemaComponent } from './tema/crear-tema/crear-tema.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { ViewTemaComponent } from './tema/view-tema/view-tema.component';
     CrearForoComponent,
     ListForoComponent,
     ViewForoComponent,
-    ViewTemaComponent
+    ViewTemaComponent,
+    CrearTemaComponent
   ],
   imports: [
     BrowserModule,

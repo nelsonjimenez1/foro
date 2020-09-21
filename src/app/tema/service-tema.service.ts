@@ -4,8 +4,8 @@ import {
   HttpHeaders
 } from "@angular/common/http";
 import { Injectable } from '@angular/core';
-import { Foro } from './Foro';
-import { Tema } from './../tema/Tema';
+import { Foro } from './../foro/Foro';
+import { Tema } from './Tema';
 import { Comentario } from './../comentario/Comentario';
 import { Observable, throwError } from "rxjs";
 import { catchError } from "rxjs/operators";
@@ -14,8 +14,8 @@ import { environment } from "src/environments/environment";
 @Injectable({
   providedIn: 'root'
 })
-export class ServiceForoService {
-  constructor(private http: HttpClient) {}
+export class ServiceTemaService {
+  constructor(private http: HttpClient) { }
 
   private handleError(error: HttpErrorResponse): Observable<any> {
     console.log(error);
@@ -51,23 +51,18 @@ export class ServiceForoService {
       );
   }
 
-  findAllForos() {
-    const url = `${environment.foroService}/foros`;
-    return this.get<Foro[]>(url);
+  findAllComentarios(id: number) {
+    const url = `${environment.foroService}/temas/${id}/comentarios`;
+    return this.get<Comentario[]>(url);
   }
 
-  findAllTemas(id: number) {
-    const url = `${environment.foroService}/foros/${id}/temas`;
-    return this.get<Tema[]>(url);
-  }
-
-  createForo(foro: Foro) {
-    const url = `${environment.foroService}/foros`;
-    return this.post(url, foro);
+  createTema(tema: Tema) {
+    const url = `${environment.foroService}/temas`;
+    return this.post(url, tema);
   }
 
   findById(id: number) {
-    const url = `${environment.foroService}/foros/${id}`;
-    return this.get<Foro>(url);
+    const url = `${environment.foroService}/temas/${id}`;
+    return this.get<Tema>(url);
   }
 }
