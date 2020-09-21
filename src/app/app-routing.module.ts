@@ -1,6 +1,8 @@
-import { CrearForoComponent } from './foro/crear-foro/crear-foro.component';
 import { ListForoComponent } from './foro/list-foro/list-foro.component';
+import { CrearForoComponent } from './foro/crear-foro/crear-foro.component';
 import { ViewForoComponent } from './foro/view-foro/view-foro.component';
+import { ViewTemaComponent } from './tema/view-tema/view-tema.component';
+import { CrearTemaComponent } from './tema/crear-tema/crear-tema.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -8,6 +10,8 @@ const routes: Routes = [
   {path: 'foro/list', component: ListForoComponent},
   {path: 'foro/crear', component: CrearForoComponent},
   {path: 'foro/view/:id', component: ViewForoComponent},
+  {path: 'tema/view/:id', component: ViewTemaComponent},
+  {path: 'tema/crear/:id', component: CrearTemaComponent},
   {path: '', pathMatch: 'full', redirectTo: 'foro/list'}
   ];
 

@@ -2,18 +2,16 @@ import { Foro } from './../Foro';
 import { ServiceForoService } from './../service-foro.service';
 import { Component, OnInit } from '@angular/core';
 
-
 @Component({
   selector: 'app-list-foro',
   templateUrl: './list-foro.component.html',
   styleUrls: ['./list-foro.component.css']
 })
 export class ListForoComponent implements OnInit {
-
   foros: Foro[];
   selectedForo: Foro = null;
-  nombreForo = '';
-  constructor(private foroRepo: ServiceForoService) { }
+
+  constructor(private foroRepo: ServiceForoService) {}
 
   loadForos(): any {
     this.foroRepo.findAllForos().subscribe(
@@ -27,6 +25,7 @@ export class ListForoComponent implements OnInit {
 
   selectForo(foro: Foro): void {
     this.selectedForo = foro;
+    console.log(this.selectedForo)
   }
 
   ngOnInit(): void {
