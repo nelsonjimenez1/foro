@@ -1,6 +1,8 @@
-import {Tema} from './Tema';
+import {Tema} from './../tema/Tema';
+
 export class Foro{
   public temas : Tema[]=[];
-  public id: Number
+  public id: number
+
   constructor(public nombre: string) {}
 }

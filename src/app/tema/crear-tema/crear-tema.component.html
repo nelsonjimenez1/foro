@@ -1,0 +1,16 @@
+<p>crear-tema works!</p>
+<form (ngSubmit)='agregarTema()'>
+  <p>Titulo: </p>
+  <input
+    id='titulo'
+    type='text'
+    name='titulo'
+    [(ngModel)]='titulo'/>
+  <p>Descripcion: </p>
+  <input
+    id='descripcion'
+    type='text'
+    name='descripcion'
+    [(ngModel)]='descripcion'/>
+  <button type="submit">agregar</button>
+</form>

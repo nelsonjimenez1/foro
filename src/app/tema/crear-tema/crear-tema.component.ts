@@ -1,39 +1,37 @@
+import { ServiceTemaService } from './../service-tema.service';
+import { ServiceForoService } from './../../foro/service-foro.service';
+import { Tema } from './../Tema';
+import { Foro } from './../../foro/Foro';
 import { Component, OnInit } from '@angular/core';
-import { Foro } from './../Foro';
-import { Tema } from './../../tema/Tema';
-import { ServiceForoService } from './../service-foro.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-view-foro',
-  templateUrl: './view-foro.component.html',
-  styleUrls: ['./view-foro.component.css']
+  selector: 'app-crear-tema',
+  templateUrl: './crear-tema.component.html',
+  styleUrls: ['./crear-tema.component.css']
 })
-export class ViewForoComponent implements OnInit {
-  temas: Tema[];
+export class CrearTemaComponent implements OnInit {
+  titulo = '';
+  descripcion = '';
   foro: Foro = null;
-  selectedTema: Tema =  null;
 
   constructor(
+    private temaRepo: ServiceTemaService,
     private foroRepo: ServiceForoService,
     private route: ActivatedRoute,
     private router: Router
   ) { }
 
-  loadTemas(): any {
-    this.foroRepo.findAllTemas(this.foro.id).subscribe(
+  agregarTema(): void {
+    let nTema =  new Tema(this.titulo, this.descripcion, new Date())
+    nTema.foro = this.foro;
+    this.temaRepo.createTema(nTema).subscribe(
       results => {
         console.log(results);
-        this.temas = results;
       },
       error => console.error(error)
     );
-  }
-
-  selectTema(tema: Tema): void {
-    this.selectedTema = tema;
-    console.log(this.selectedTema)
   }
 
   ngOnInit(): void {
@@ -44,7 +42,6 @@ export class ViewForoComponent implements OnInit {
     .subscribe(result => {
       console.log(result);
       this.foro = result;
-      this.loadTemas();
     });
   }
 }
