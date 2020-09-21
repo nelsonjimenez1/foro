@@ -5,16 +5,16 @@ import {
 } from "@angular/common/http";
 import { Injectable } from '@angular/core';
 import { Foro } from './Foro';
-import { Tema } from './../tema/Tema';
-import { Comentario } from './../comentario/Comentario';
+import { Comentario } from './Comentario';
+import { Tema } from './Tema';
 import { Observable, throwError } from "rxjs";
 import { catchError } from "rxjs/operators";
 import { environment } from "src/environments/environment";
-
 @Injectable({
   providedIn: 'root'
 })
 export class ServiceForoService {
+
   constructor(private http: HttpClient) {}
 
   private handleError(error: HttpErrorResponse): Observable<any> {
@@ -56,14 +56,11 @@ export class ServiceForoService {
     return this.get<Foro[]>(url);
   }
 
-  findAllTemas(id: number) {
-    const url = `${environment.foroService}/foros/${id}/temas`;
-    return this.get<Tema[]>(url);
-  }
-
   createForo(foro: Foro) {
     const url = `${environment.foroService}/foros`;
-    return this.post(url, foro);
+    return this.post(url, {
+      nombre: foro.nombre,
+    });
   }
 
   findById(id: number) {

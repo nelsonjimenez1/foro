@@ -1,9 +1,1 @@
 <p>view-tema works!</p>
-<div>
-  <ul>
-    <li *ngFor='let comentario of comentarios' (click)='selectComentario(comentario)'>
-      {{comentario.mensaje}}
-    </li>
-  </ul>
-  <button [routerLink]="['/comentario/crear']">Crear comentario</button>
-</div>
