@@ -5,8 +5,8 @@ import {
 } from "@angular/common/http";
 import { Injectable } from '@angular/core';
 import { Foro } from './../foro/Foro';
-import { Tema } from './Tema';
-import { Comentario } from './../comentario/Comentario';
+import { Tema } from './../tema/Tema';
+import { Comentario } from './Comentario';
 import { Observable, throwError } from "rxjs";
 import { catchError } from "rxjs/operators";
 import { environment } from "src/environments/environment";
@@ -14,7 +14,7 @@ import { environment } from "src/environments/environment";
 @Injectable({
   providedIn: 'root'
 })
-export class ServiceTemaService {
+export class ServiceComentarioService {
   constructor(private http: HttpClient) { }
 
   private handleError(error: HttpErrorResponse): Observable<any> {
@@ -74,23 +74,18 @@ export class ServiceTemaService {
       );
   }
 
-  findAllComentarios(id: number) {
-    const url = `${environment.foroService}/temas/${id}/comentarios`;
-    return this.get<Comentario[]>(url);
-  }
-
-  createTema(tema: Tema) {
-    const url = `${environment.foroService}/temas`;
-    return this.post(url, tema);
+  createComentario(comentario: Comentario) {
+    const url = `${environment.foroService}/comentarios`;
+    return this.post(url, comentario);
   }
 
   findById(id: number) {
-    const url = `${environment.foroService}/temas/${id}`;
-    return this.get<Tema>(url);
+    const url = `${environment.foroService}/comentarios/${id}`;
+    return this.get<Comentario>(url);
   }
 
   deleteById(id: number) {
-    const url = `${environment.foroService}/temas/${id}`;
-    return this.delete<Tema>(url);
+    const url = `${environment.foroService}/comentarios/${id}`;
+    return this.delete<Comentario>(url);
   }
 }

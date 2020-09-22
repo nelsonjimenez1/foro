@@ -1,0 +1,10 @@
+<p>crear-comentario works!</p>
+<form (ngSubmit)='agregarComentario()'>
+  <p>Mensaje: </p>
+  <input
+    id='mensaje'
+    type='text'
+    name='mensaje'
+    [(ngModel)]='mensaje'/>
+  <button type="submit">agregar</button>
+</form>

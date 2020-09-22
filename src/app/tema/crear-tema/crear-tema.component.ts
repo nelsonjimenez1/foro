@@ -24,7 +24,7 @@ export class CrearTemaComponent implements OnInit {
   ) { }
 
   agregarTema(): void {
-    let nTema =  new Tema(this.titulo, this.descripcion, new Date())
+    let nTema =  new Tema(this.titulo, this.descripcion, new Date());
     nTema.foro = this.foro;
     this.temaRepo.createTema(nTema).subscribe(
       results => {

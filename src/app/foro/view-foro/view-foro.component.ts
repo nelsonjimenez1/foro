@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Foro } from './../Foro';
 import { Tema } from './../../tema/Tema';
 import { ServiceForoService } from './../service-foro.service';
+import { ServiceTemaService } from './../../tema/service-tema.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 
@@ -13,10 +14,11 @@ import { switchMap } from 'rxjs/operators';
 export class ViewForoComponent implements OnInit {
   temas: Tema[];
   foro: Foro = new Foro('prueba');
-  selectedTema: Tema =  null;
+  selectedTema: Tema = new Tema('prueba', 'prueba', new Date());
 
   constructor(
     private foroRepo: ServiceForoService,
+    private temaRepo: ServiceTemaService,
     private route: ActivatedRoute,
     private router: Router
   ) { }
@@ -36,8 +38,19 @@ export class ViewForoComponent implements OnInit {
     console.log(this.selectedTema)
   }
 
+  deleteTema(id: number): void {
+    this.temaRepo.deleteById(id).subscribe(
+      results => {
+        console.log(results);
+        this.loadTemas();
+      },
+      error => console.error(error)
+    );
+  }
+
   ngOnInit(): void {
     this.foro.id = -6;
+    this.selectedTema.id = -6;
     this.route.paramMap
     .pipe(
       switchMap(params => this.foroRepo.findById(+params.get('id')))

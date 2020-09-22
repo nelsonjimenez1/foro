@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Tema } from './../Tema';
 import { Comentario } from './../../comentario/Comentario';
 import { ServiceTemaService } from './../service-tema.service';
+import { ServiceComentarioService } from './../../comentario/service-comentario.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 
@@ -12,16 +13,17 @@ import { switchMap } from 'rxjs/operators';
 })
 export class ViewTemaComponent implements OnInit {
   comentarios: Comentario[];
-  tema: Tema = null;
-  selectedComentario: Comentario =  null;
+  tema: Tema = new Tema('prueba', 'prueba', new Date());
+  selectedComentario: Comentario = new Comentario('prueba', new Date());
 
   constructor(
     private temaRepo: ServiceTemaService,
+    private comentarioRepo: ServiceComentarioService,
     private route: ActivatedRoute,
     private router: Router
   ) { }
 
-  loadTemas(): any {
+  loadComentarios(): any {
     this.temaRepo.findAllComentarios(this.tema.id).subscribe(
       results => {
         console.log(results);
@@ -36,6 +38,16 @@ export class ViewTemaComponent implements OnInit {
     console.log(this.selectedComentario)
   }
 
+  deleteComentario(id: number): void {
+    this.comentarioRepo.deleteById(id).subscribe(
+      results => {
+        console.log(results);
+        this.loadComentarios();
+      },
+      error => console.error(error)
+    );
+  }
+
   ngOnInit(): void {
     this.route.paramMap
     .pipe(
@@ -44,7 +56,7 @@ export class ViewTemaComponent implements OnInit {
     .subscribe(result => {
       console.log(result);
       this.tema = result;
-      this.loadTemas();
+      this.loadComentarios();
     });
   }
 }
