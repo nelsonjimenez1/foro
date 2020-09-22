@@ -39,24 +39,29 @@ export class ViewTemaComponent implements OnInit {
   }
 
   deleteComentario(id: number): void {
-    this.comentarioRepo.deleteById(id).subscribe(
-      results => {
-        console.log(results);
-        this.loadComentarios();
-      },
-      error => console.error(error)
-    );
+    if (this.selectedComentario.id > -6) {
+      this.comentarioRepo.deleteById(id).subscribe(
+        results => {
+          console.log(results);
+          this.loadComentarios();
+        },
+        error => console.error(error)
+      );
+    }else{
+      alert("seleccione un comentario");
+    }
   }
 
   ngOnInit(): void {
+    this.selectedComentario.id=-6;
     this.route.paramMap
-    .pipe(
-      switchMap(params => this.temaRepo.findById(+params.get('id')))
-    )
-    .subscribe(result => {
-      console.log(result);
-      this.tema = result;
-      this.loadComentarios();
-    });
+      .pipe(
+        switchMap(params => this.temaRepo.findById(+params.get('id')))
+      )
+      .subscribe(result => {
+        console.log(result);
+        this.tema = result;
+        this.loadComentarios();
+      });
   }
 }

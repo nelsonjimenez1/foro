@@ -39,26 +39,31 @@ export class ViewForoComponent implements OnInit {
   }
 
   deleteTema(id: number): void {
-    this.temaRepo.deleteById(id).subscribe(
-      results => {
-        console.log(results);
-        this.loadTemas();
-      },
-      error => console.error(error)
-    );
+
+    if (this.selectedTema.id > -6) {
+      this.temaRepo.deleteById(id).subscribe(
+        results => {
+          console.log(results);
+          this.loadTemas();
+        },
+        error => console.error(error)
+      );
+    } else {
+      alert("seleccione un tema");
+    }
   }
 
   ngOnInit(): void {
     this.foro.id = -6;
     this.selectedTema.id = -6;
     this.route.paramMap
-    .pipe(
-      switchMap(params => this.foroRepo.findById(+params.get('id')))
-    )
-    .subscribe(result => {
-      console.log(result);
-      this.foro = result;
-      this.loadTemas();
-    });
+      .pipe(
+        switchMap(params => this.foroRepo.findById(+params.get('id')))
+      )
+      .subscribe(result => {
+        console.log(result);
+        this.foro = result;
+        this.loadTemas();
+      });
   }
 }

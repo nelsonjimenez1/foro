@@ -6,5 +6,6 @@
     type='text'
     name='mensaje'
     [(ngModel)]='mensaje'/>
-  <button type="submit">agregar</button>
-</form>
+    <button type="submit">agregar</button>
+  </form>
+  <button [routerLink]="['/tema/view', tema.id]" >volver</button>

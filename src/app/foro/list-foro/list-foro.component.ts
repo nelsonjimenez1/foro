@@ -29,14 +29,21 @@ export class ListForoComponent implements OnInit {
   }
 
   deleteForo(id: number): void {
-    this.foroRepo.deleteById(id).subscribe(
-      results => {
-        console.log(results);
-        this.loadForos();
-      },
-      error => console.error(error)
-    );
+    if(this.selectedForo.id > -6){
+
+      this.foroRepo.deleteById(id).subscribe(
+        results => {
+          console.log(results);
+          this.loadForos();
+        },
+        error => console.error(error)
+      );
+    }else{
+      alert("por favor seleccione un foro");
+    }
+
   }
+
 
   ngOnInit(): void {
     this.loadForos();
