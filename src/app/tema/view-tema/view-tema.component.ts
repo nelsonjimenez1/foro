@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Foro } from './../../foro/Foro';
 import { Tema } from './../Tema';
 import { Comentario } from './../../comentario/Comentario';
 import { ServiceTemaService } from './../service-tema.service';
@@ -53,7 +54,9 @@ export class ViewTemaComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.selectedComentario.id=-6;
+    this.tema.foro = new Foro('prueba');
+    this.tema.foro.id = -6
+    this.selectedComentario.id = -6;
     this.route.paramMap
       .pipe(
         switchMap(params => this.temaRepo.findById(+params.get('id')))

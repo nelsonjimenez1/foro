@@ -91,6 +91,6 @@ export class ServiceTemaService {
 
   deleteById(id: number) {
     const url = `${environment.foroService}/temas/${id}`;
-    return this.delete<Tema>(url);
+    return this.delete(url);
   }
 }

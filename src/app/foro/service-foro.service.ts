@@ -51,14 +51,14 @@ export class ServiceForoService {
       );
   }
 
-/*  private put<T>(url, data: T): Observable<T> {
+  /*private put<T>(url, data: T): Observable<T> {
     console.log("put:", url);
     return this.http.put<T>(url, data).pipe(
       // retry(5),
       catchError(this.handleError)
     );
-  }
-*/
+  }*/
+  
   private delete<T>(url): Observable<T> {
     console.log("delete:", url);
     return this.http

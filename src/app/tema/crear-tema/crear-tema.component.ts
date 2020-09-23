@@ -14,7 +14,7 @@ import { switchMap } from 'rxjs/operators';
 export class CrearTemaComponent implements OnInit {
   titulo = '';
   descripcion = '';
-  foro: Foro = null;
+  foro: Foro = new Foro('prueba');
 
   constructor(
     private temaRepo: ServiceTemaService,
@@ -35,6 +35,7 @@ export class CrearTemaComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.foro.id = -6;
     this.route.paramMap
     .pipe(
       switchMap(params => this.foroRepo.findById(+params.get('id')))

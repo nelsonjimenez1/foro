@@ -13,7 +13,7 @@ import { switchMap } from 'rxjs/operators';
 })
 export class CrearComentarioComponent implements OnInit {
   mensaje = '';
-  tema: Tema = null;
+  tema: Tema = new Tema('prueba', 'prueba', new Date());
 
   constructor(
     private comentarioRepo: ServiceComentarioService,
@@ -34,6 +34,7 @@ export class CrearComentarioComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.tema.id = -6;
     this.route.paramMap
     .pipe(
       switchMap(params => this.temaRepo.findById(+params.get('id')))

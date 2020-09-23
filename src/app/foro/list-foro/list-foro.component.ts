@@ -44,7 +44,6 @@ export class ListForoComponent implements OnInit {
 
   }
 
-
   ngOnInit(): void {
     this.loadForos();
     this.selectedForo.id = -6;

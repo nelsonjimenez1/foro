@@ -86,6 +86,6 @@ export class ServiceComentarioService {
 
   deleteById(id: number) {
     const url = `${environment.foroService}/comentarios/${id}`;
-    return this.delete<Comentario>(url);
+    return this.delete(url);
   }
 }
