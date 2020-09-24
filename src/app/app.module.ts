@@ -10,6 +10,8 @@ import { ViewForoComponent } from './foro/view-foro/view-foro.component';
 import { ViewTemaComponent } from './tema/view-tema/view-tema.component';
 import { CrearTemaComponent } from './tema/crear-tema/crear-tema.component';
 import { CrearComentarioComponent } from './comentario/crear-comentario/crear-comentario.component';
+import { LoginComponent } from './login/login.component';
+import { RestClientService } from './services/rest-client.service';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,8 @@ import { CrearComentarioComponent } from './comentario/crear-comentario/crear-co
     ViewForoComponent,
     ViewTemaComponent,
     CrearTemaComponent,
-    CrearComentarioComponent
+    CrearComentarioComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +30,7 @@ import { CrearComentarioComponent } from './comentario/crear-comentario/crear-co
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [RestClientService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

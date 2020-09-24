@@ -26,10 +26,7 @@ export class ServiceForoService {
     console.log("get:", url);
     return this.http
       .get<T>(url, {
-        headers: new HttpHeaders({
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        })
+        withCredentials: true
       })
       .pipe(
         // retry(5),
@@ -43,7 +40,8 @@ export class ServiceForoService {
       .post<T>(url, data, {
         headers: new HttpHeaders({
           "Content-Type": "application/json"
-        })
+        }),
+        withCredentials: true
       })
       .pipe(
         // retry(5),
@@ -58,7 +56,7 @@ export class ServiceForoService {
       catchError(this.handleError)
     );
   }*/
-  
+
   private delete<T>(url): Observable<T> {
     console.log("delete:", url);
     return this.http
@@ -66,7 +64,8 @@ export class ServiceForoService {
         headers: new HttpHeaders({
           "Content-Type": "application/json",
           "Accept": "application/json"
-        })
+        }),
+        withCredentials: true
       })
       .pipe(
         // retry(5),
@@ -75,7 +74,7 @@ export class ServiceForoService {
   }
 
   findAllForos() {
-    const url = `${environment.foroService}/foros`;
+    const url = `${environment.foroService}/apiForo/foros`;
     return this.get<Foro[]>(url);
   }
 
@@ -85,7 +84,7 @@ export class ServiceForoService {
   }
 
   createForo(foro: Foro) {
-    const url = `${environment.foroService}/foros`;
+    const url = `${environment.foroService}/apiForo/foros`;
     return this.post(url, foro);
   }
 
