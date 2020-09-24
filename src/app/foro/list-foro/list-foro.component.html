@@ -2,10 +2,9 @@
 <div>
   <ul  class="containerlist">
     <li *ngFor='let foro of foros' (click)='selectForo(foro)' >
-      {{foro.nombre}}
+    <h3 [routerLink]="['/foro/view', foro.id]">{{foro.nombre}}</h3>
     </li>
   </ul>
   <button [routerLink]="['/foro/crear']">Crear foro</button>
-  <button [routerLink]="['/foro/view', selectedForo.id]">Mirar foro</button>
   <button (click)='deleteForo(selectedForo.id)'>Eliminar foro</button>
 </div>
