@@ -1,5 +1,7 @@
 import { Foro } from './../Foro';
 import { ServiceForoService } from './../service-foro.service';
+import { RestClientService } from './../../services/rest-client.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -11,7 +13,7 @@ export class ListForoComponent implements OnInit {
   foros: Foro[];
   selectedForo: Foro = new Foro('prueba');
 
-  constructor(private foroRepo: ServiceForoService) {}
+  constructor(private foroRepo: ServiceForoService, private restClient: RestClientService, private router: Router) {}
 
   loadForos(): any {
     this.foroRepo.findAllForos().subscribe(
@@ -42,6 +44,16 @@ export class ListForoComponent implements OnInit {
       alert("por favor seleccione un foro");
     }
 
+  }
+
+  logout() {
+    this.restClient.logout().subscribe(data => {
+        console.log("log out");
+        this.router.navigate(["/login"])
+      }, error => {
+        console.error(error);
+
+      });
   }
 
   ngOnInit(): void {

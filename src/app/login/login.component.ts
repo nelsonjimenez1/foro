@@ -1,4 +1,5 @@
 import { RestClientService } from './../services/rest-client.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -11,7 +12,7 @@ export class LoginComponent implements OnInit {
   password = 'password';
   message: any;
 
-  constructor(private restClient: RestClientService) {}
+  constructor(private restClient: RestClientService, private router: Router) {}
 
   ngOnInit() {}
 
@@ -19,6 +20,7 @@ export class LoginComponent implements OnInit {
     console.log(this.user + ' - ' + this.password);
     this.restClient.login(this.user, this.password).subscribe(data => {
         console.log('Succes');
+        this.router.navigate(["/foro/list"])
       }, error => {
         console.error(error);
       });
@@ -34,14 +36,5 @@ export class LoginComponent implements OnInit {
         console.error(error);
       }
     );
-  }
-
-  logout() {
-    this.restClient.logout().subscribe(data => {
-        console.log("log out");
-      }, error => {
-        console.error(error);
-
-      });
   }
 }
