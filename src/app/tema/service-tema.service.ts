@@ -24,7 +24,13 @@ export class ServiceTemaService {
 
   private get<T>(url): Observable<T> {
     console.log("get:", url);
-    return this.http.get<T>(url, {withCredentials: true})
+    return this.http
+      .get<T>(url, {
+        headers: new HttpHeaders({
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        })
+      })
       .pipe(
         // retry(5),
         catchError(this.handleError)
@@ -33,7 +39,12 @@ export class ServiceTemaService {
 
   private post<T>(url, data: T): Observable<T> {
     console.log("post:", url);
-    return this.http.post<T>(url, data, {withCredentials: true})
+    return this.http
+      .post<T>(url, data, {
+        headers: new HttpHeaders({
+          "Content-Type": "application/json"
+        })
+      })
       .pipe(
         // retry(5),
         catchError(this.handleError)
@@ -42,16 +53,21 @@ export class ServiceTemaService {
 
   private put<T>(url, data: T): Observable<T> {
     console.log("put:", url);
-    return this.http.put<T>(url, data, {withCredentials: true})
-      .pipe(
-        // retry(5),
-        catchError(this.handleError)
-      );
+    return this.http.put<T>(url, data).pipe(
+      // retry(5),
+      catchError(this.handleError)
+    );
   }
 
   private delete<T>(url): Observable<T> {
     console.log("delete:", url);
-    return this.http.delete<T>(url, {withCredentials: true})
+    return this.http
+      .delete<T>(url, {
+        headers: new HttpHeaders({
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        })
+      })
       .pipe(
         // retry(5),
         catchError(this.handleError)
