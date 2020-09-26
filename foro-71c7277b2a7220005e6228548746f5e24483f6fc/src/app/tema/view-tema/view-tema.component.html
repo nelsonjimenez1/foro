@@ -1,0 +1,11 @@
+<p>view-tema works!</p>
+<div>
+  <ul>
+    <li *ngFor='let comentario of comentarios' (click)='selectComentario(comentario)'>
+      {{comentario.mensaje}}
+    </li>
+  </ul>
+  <button [routerLink]="['/comentario/crear', tema.id]">Crear comentario</button>
+  <button (click)='deleteComentario(selectedComentario.id)'>Eliminar comentario</button>
+  <button [routerLink]="['/foro/view', tema.foro.id]">volver a foro</button>
+</div>
