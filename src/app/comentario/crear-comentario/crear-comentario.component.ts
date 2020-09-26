@@ -14,7 +14,7 @@ import { switchMap } from 'rxjs/operators';
 export class CrearComentarioComponent implements OnInit {
   mensaje = '';
   tema: Tema = new Tema('prueba', 'prueba', new Date());
-
+  answerId: number;
   constructor(
     private comentarioRepo: ServiceComentarioService,
     private temaRepo: ServiceTemaService,
@@ -25,6 +25,7 @@ export class CrearComentarioComponent implements OnInit {
   agregarComentario(): void {
     let nComentario =  new Comentario(this.mensaje, new Date());
     nComentario.tema = this.tema;
+    nComentario.idRespuesta = this.answerId;
     this.comentarioRepo.createComentario(nComentario).subscribe(
       results => {
         console.log(results);
@@ -32,12 +33,17 @@ export class CrearComentarioComponent implements OnInit {
       error => console.error(error)
     );
   }
-
+  setAnswerId(answerId: number){
+    this.answerId = answerId;
+  }
   ngOnInit(): void {
     this.tema.id = -6;
     this.route.paramMap
     .pipe(
-      switchMap(params => this.temaRepo.findById(+params.get('id')))
+      switchMap(params => {
+        this.setAnswerId(+params.get('idR'));
+        return this.temaRepo.findById(+params.get('id'));
+      })
     )
     .subscribe(result => {
       console.log(result);

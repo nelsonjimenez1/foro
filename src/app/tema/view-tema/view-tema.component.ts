@@ -36,7 +36,7 @@ export class ViewTemaComponent implements OnInit {
 
   selectComentario(comentario: Comentario): void {
     this.selectedComentario = comentario;
-    console.log(this.selectedComentario)
+    console.log(this.selectedComentario);
   }
 
   deleteComentario(id: number): void {
@@ -48,6 +48,14 @@ export class ViewTemaComponent implements OnInit {
         },
         error => console.error(error)
       );
+    }else{
+      alert("seleccione un comentario");
+    }
+  }
+
+  answerComentario(idR: number, id: number): void {
+    if (this.selectedComentario.id > -6) {
+      this.router.navigate(["comentario/crear", id, idR]);
     }else{
       alert("seleccione un comentario");
     }

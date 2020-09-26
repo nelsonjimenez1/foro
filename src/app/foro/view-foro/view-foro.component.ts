@@ -52,6 +52,13 @@ export class ViewForoComponent implements OnInit {
       alert("seleccione un tema");
     }
   }
+  mirarTema(id: number){
+    if(id > -6){
+      this.router.navigate(['/tema/view', id]);
+    }else{
+      alert("por favor seleccione un tema ");
+    }
+  }
 
   ngOnInit(): void {
     this.foro.id = -6;

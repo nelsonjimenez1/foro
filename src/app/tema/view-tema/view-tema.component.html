@@ -5,7 +5,8 @@
       {{comentario.mensaje}}
     </li>
   </ul>
-  <button [routerLink]="['/comentario/crear', tema.id]">Crear comentario</button>
+  <button [routerLink]="['/comentario/crear', tema.id, -6]">Crear comentario</button>
   <button (click)='deleteComentario(selectedComentario.id)'>Eliminar comentario</button>
+  <button (click)='answerComentario(selectedComentario.id, tema.id)'>responder comentario</button>
   <button [routerLink]="['/foro/view', tema.foro.id]">volver a foro</button>
 </div>

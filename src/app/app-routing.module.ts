@@ -15,7 +15,7 @@ const routes: Routes = [
   {path: 'foro/view/:id', component: ViewForoComponent},
   {path: 'tema/view/:id', component: ViewTemaComponent},
   {path: 'tema/crear/:id', component: CrearTemaComponent},
-  {path: 'comentario/crear/:id', component: CrearComentarioComponent},
+  {path: 'comentario/crear/:id/:idR', component: CrearComentarioComponent},
   {path: '', pathMatch: 'full', redirectTo: 'login'}
   ];
 
