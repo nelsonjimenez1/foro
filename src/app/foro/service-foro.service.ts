@@ -24,7 +24,10 @@ export class ServiceForoService {
 
   private get<T>(url): Observable<T> {
     console.log("get:", url);
-    return this.http.get<T>(url, {withCredentials: true})
+    return this.http
+      .get<T>(url, {
+        withCredentials: true
+      })
       .pipe(
         // retry(5),
         catchError(this.handleError)
@@ -33,25 +36,37 @@ export class ServiceForoService {
 
   private post<T>(url, data: T): Observable<T> {
     console.log("post:", url);
-    return this.http.post<T>(url, data, {withCredentials: true})
+    return this.http
+      .post<T>(url, data, {
+        headers: new HttpHeaders({
+          "Content-Type": "application/json"
+        }),
+        withCredentials: true
+      })
       .pipe(
         // retry(5),
         catchError(this.handleError)
       );
   }
 
-  private put<T>(url, data: T): Observable<T> {
+  /*private put<T>(url, data: T): Observable<T> {
     console.log("put:", url);
-    return this.http.put<T>(url, data, {withCredentials: true})
-      .pipe(
-        // retry(5),
-        catchError(this.handleError)
-      );
-  }
+    return this.http.put<T>(url, data).pipe(
+      // retry(5),
+      catchError(this.handleError)
+    );
+  }*/
 
   private delete<T>(url): Observable<T> {
     console.log("delete:", url);
-    return this.http.delete<T>(url, {withCredentials: true})
+    return this.http
+      .delete<T>(url, {
+        headers: new HttpHeaders({
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        }),
+        withCredentials: true
+      })
       .pipe(
         // retry(5),
         catchError(this.handleError)
@@ -59,7 +74,7 @@ export class ServiceForoService {
   }
 
   findAllForos() {
-    const url = `${environment.foroService}/foros`;
+    const url = `${environment.foroService}/apiForo/foros`;
     return this.get<Foro[]>(url);
   }
 
@@ -69,7 +84,7 @@ export class ServiceForoService {
   }
 
   createForo(foro: Foro) {
-    const url = `${environment.foroService}/admin/foros`;
+    const url = `${environment.foroService}/apiForo/foros`;
     return this.post(url, foro);
   }
 
@@ -79,7 +94,7 @@ export class ServiceForoService {
   }
 
   deleteById(id: number) {
-    const url = `${environment.foroService}/admin/foros/${id}`;
+    const url = `${environment.foroService}/foros/${id}`;
     return this.delete(url);
   }
 
