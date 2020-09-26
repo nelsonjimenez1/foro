@@ -52,20 +52,6 @@ export class ViewTemaComponent implements OnInit {
       alert("seleccione un comentario");
     }
   }
-  answerComentario(id: number): void {
-    if (this.selectedComentario.id > -6) {
-
-      this.comentarioRepo.createComentario().subscribe(
-        results => {
-          console.log(results);
-          this.loadComentarios();
-        },
-        error => console.error(error)
-      );
-    }else{
-      alert("seleccione un comentario");
-    }
-  }
 
   ngOnInit(): void {
     this.tema.foro = new Foro('prueba');

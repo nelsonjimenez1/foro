@@ -12,7 +12,6 @@ import { CrearTemaComponent } from './tema/crear-tema/crear-tema.component';
 import { CrearComentarioComponent } from './comentario/crear-comentario/crear-comentario.component';
 import { LoginComponent } from './login/login.component';
 import { RestClientService } from './services/rest-client.service';
-import { AnswerComentarioComponent } from './comentario/answer-comentario/answer-comentario.component';
 
 @NgModule({
   declarations: [
@@ -23,8 +22,7 @@ import { AnswerComentarioComponent } from './comentario/answer-comentario/answer
     ViewTemaComponent,
     CrearTemaComponent,
     CrearComentarioComponent,
-    LoginComponent,
-    AnswerComentarioComponent
+    LoginComponent
   ],
   imports: [
     BrowserModule,

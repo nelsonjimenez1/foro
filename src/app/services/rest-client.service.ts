@@ -19,14 +19,10 @@ export class RestClientService {
   }
 
   getAdminData() {
-    return this.http.get('http://localhost:8080/admin/test',  {
-      withCredentials: true
-    });
+    return this.http.get('http://localhost:8080/admin/test',  {withCredentials: true});
   }
 
   logout() {
-    return this.http.post('http://localhost:8080/logout', '', {
-      withCredentials: true
-    });
+    return this.http.post('http://localhost:8080/logout', '', {withCredentials: true});
   }
 }
