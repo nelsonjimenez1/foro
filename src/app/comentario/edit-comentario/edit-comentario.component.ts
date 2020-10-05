@@ -7,14 +7,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-crear-comentario',
-  templateUrl: './crear-comentario.component.html',
-  styleUrls: ['./crear-comentario.component.css']
+  selector: 'app-edit-comentario',
+  templateUrl: './edit-comentario.component.html',
+  styleUrls: ['./edit-comentario.component.css']
 })
-export class CrearComentarioComponent implements OnInit {
-  mensaje = '';
+export class EditComentarioComponent implements OnInit {
+  comentario: Comentario = new Comentario('prueba', new Date());
   tema: Tema = new Tema('prueba', 'prueba', new Date());
-  answerId: number;
 
   constructor(
     private comentarioRepo: ServiceComentarioService,
@@ -23,37 +22,13 @@ export class CrearComentarioComponent implements OnInit {
     private router: Router
   ) { }
 
-  agregarComentario(): void {
-    let nComentario =  new Comentario(this.mensaje, new Date());
-    nComentario.tema = this.tema;
-    nComentario.aprobado = !this.tema.foro.moderado;
-    nComentario.ranking = 0;
-
-    this.comentarioRepo.createComentario(nComentario).subscribe(
+  editarComentario(): void {
+    this.comentarioRepo.updateComentario(this.comentario.id, this.comentario).subscribe(
       results => {
         console.log(results);
-
-        this.comentarioRepo.findById(this.answerId).subscribe(
-          results2 => {
-            console.log(results2);
-            results.idRespuesta = results2;
-
-            this.comentarioRepo.updateComentario(results.id, results).subscribe(
-              results3 => {
-                console.log(results3);
-              },
-              error3 => console.error(error3)
-            );
-          },
-          error2 => console.error(error2)
-        );
       },
       error => console.error(error)
     );
-  }
-
-  setAnswerId(answerId: number){
-    this.answerId = answerId;
   }
 
   volver() {
@@ -66,13 +41,19 @@ export class CrearComentarioComponent implements OnInit {
     this.route.paramMap
     .pipe(
       switchMap(params => {
-        this.setAnswerId(+params.get('idR'));
+        this.comentario.id = (+params.get('idC'));
         return this.temaRepo.findById(+params.get('id'));
       })
     )
     .subscribe(result => {
       console.log(result);
       this.tema = result;
+      this.comentarioRepo.findById(this.comentario.id).subscribe(
+        results2 => {
+          this.comentario = results2;
+        },
+        error2 => console.error(error2)
+      );
     });
   }
 }

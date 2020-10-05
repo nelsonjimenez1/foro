@@ -1,0 +1,17 @@
+<p>edit-tema works!</p>
+<form (ngSubmit)='editarTema()'>
+  <p>Titulo: </p>
+  <input
+    id='titulo'
+    type='text'
+    name='titulo'
+    [(ngModel)]='tema.titulo'/>
+  <p>Descripcion: </p>
+  <input
+    id='descripcion'
+    type='text'
+    name='descripcion'
+    [(ngModel)]='tema.descripcion'/>
+  <button type="submit">editar</button>
+</form>
+<button [routerLink]="['/foro/view', foro.id]">volver a temas</button>

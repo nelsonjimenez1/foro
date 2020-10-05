@@ -1,0 +1,11 @@
+<p>aprobar-tema works!</p>
+<div>
+  <ul>
+    <li *ngFor='let tema of temas' (click)='selectTema(tema)'>
+      {{tema.titulo}}
+    </li>
+  </ul>
+  <button (click)='aprobarTema(selectedTema.id)'>Aprobar tema</button>
+  <button (click)='rechazarTema(selectedTema.id)'>Rechazar tema</button>
+  <button (click)='volver()'>volver</button>
+</div>

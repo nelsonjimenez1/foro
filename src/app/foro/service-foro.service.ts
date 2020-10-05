@@ -63,6 +63,11 @@ export class ServiceForoService {
     return this.get<Foro[]>(url);
   }
 
+  findById(id: number) {
+    const url = `${environment.foroService}/foros/${id}`;
+    return this.get<Foro>(url);
+  }
+
   findAllTemas(id: number) {
     const url = `${environment.foroService}/foros/${id}/temas`;
     return this.get<Tema[]>(url);
@@ -70,12 +75,7 @@ export class ServiceForoService {
 
   createForo(foro: Foro) {
     const url = `${environment.foroService}/admin/foros`;
-    return this.post(url, foro);
-  }
-
-  findById(id: number) {
-    const url = `${environment.foroService}/foros/${id}`;
-    return this.get<Foro>(url);
+    return this.post<Foro>(url, foro);
   }
 
   deleteById(id: number) {

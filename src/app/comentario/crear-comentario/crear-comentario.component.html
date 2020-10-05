@@ -8,4 +8,4 @@
     [(ngModel)]='mensaje'/>
     <button type="submit">agregar</button>
 </form>
-<button [routerLink]="['/tema/view', tema.id]">volver</button>
+<button (click)='volver()'>volver</button>

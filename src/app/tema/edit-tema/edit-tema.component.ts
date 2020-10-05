@@ -7,13 +7,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-crear-tema',
-  templateUrl: './crear-tema.component.html',
-  styleUrls: ['./crear-tema.component.css']
+  selector: 'app-edit-tema',
+  templateUrl: './edit-tema.component.html',
+  styleUrls: ['./edit-tema.component.css']
 })
-export class CrearTemaComponent implements OnInit {
-  titulo = '';
-  descripcion = '';
+export class EditTemaComponent implements OnInit {
+  tema: Tema = new Tema('prueba', 'prueba', new Date());
   foro: Foro = new Foro('prueba', false);
 
   constructor(
@@ -23,12 +22,8 @@ export class CrearTemaComponent implements OnInit {
     private router: Router
   ) { }
 
-  agregarTema(): void {
-    let nTema =  new Tema(this.titulo, this.descripcion, new Date());
-    nTema.foro = this.foro;
-    nTema.aprobado = !this.foro.moderado;
-    nTema.ranking = 0;
-    this.temaRepo.createTema(nTema).subscribe(
+  editarTema(): void {
+    this.temaRepo.updateTema(this.tema.id, this.tema).subscribe(
       results => {
         console.log(results);
       },
@@ -40,11 +35,20 @@ export class CrearTemaComponent implements OnInit {
     this.foro.id = -6;
     this.route.paramMap
     .pipe(
-      switchMap(params => this.foroRepo.findById(+params.get('id')))
+      switchMap(params => {
+        this.tema.id = (+params.get('idT'));
+        return this.foroRepo.findById(+params.get('id'));
+      })
     )
     .subscribe(result => {
       console.log(result);
       this.foro = result;
+      this.temaRepo.findById(this.tema.id).subscribe(
+        results2 => {
+          this.tema = results2;
+        },
+        error2 => console.error(error2)
+      );
     });
   }
 }

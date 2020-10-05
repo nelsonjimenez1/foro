@@ -1,0 +1,11 @@
+<p>edit-comentario works!</p>
+<form (ngSubmit)='editarComentario()'>
+  <p>Mensaje: </p>
+  <input
+    id='mensaje'
+    type='text'
+    name='mensaje'
+    [(ngModel)]='comentario.mensaje'/>
+    <button type="submit">editar</button>
+</form>
+<button (click)='volver()'>volver</button>

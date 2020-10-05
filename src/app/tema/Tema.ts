@@ -5,6 +5,8 @@ export class Tema{
   public commentarios: Comentario[]=[];
   public id: number;
   public foro: Foro = null;
+  public aprobado: boolean;
+  public ranking = 0;
 
   constructor(
     public titulo: string,

@@ -58,18 +58,33 @@ export class ServiceComentarioService {
       );
   }
 
-  createComentario(comentario: Comentario) {
-    const url = `${environment.foroService}/comentarios`;
-    return this.post(url, comentario);
-  }
-
   findById(id: number) {
     const url = `${environment.foroService}/comentarios/${id}`;
     return this.get<Comentario>(url);
   }
 
+  findByIdRespuestas(id: number) {
+    const url = `${environment.foroService}/comentarios/${id}/respuestas`;
+    return this.get<Comentario[]>(url);
+  }
+
+  createComentario(comentario: Comentario) {
+    const url = `${environment.foroService}/comentarios`;
+    return this.post<Comentario>(url, comentario);
+  }
+
   deleteById(id: number) {
     const url = `${environment.foroService}/comentarios/${id}`;
     return this.delete(url);
+  }
+
+  aprobarComentario(id: number, comentario: Comentario) {
+    const url = `${environment.foroService}/moderator/comentarios/${id}`;
+    return this.put<Comentario>(url, comentario);
+  }
+
+  updateComentario(id: number, comentario: Comentario) {
+    const url = `${environment.foroService}/comentarios/${id}`;
+    return this.put<Comentario>(url, comentario);
   }
 }

@@ -58,6 +58,11 @@ export class ServiceTemaService {
       );
   }
 
+  findById(id: number) {
+    const url = `${environment.foroService}/temas/${id}`;
+    return this.get<Tema>(url);
+  }
+
   findAllComentarios(id: number) {
     const url = `${environment.foroService}/temas/${id}/comentarios`;
     return this.get<Comentario[]>(url);
@@ -65,16 +70,21 @@ export class ServiceTemaService {
 
   createTema(tema: Tema) {
     const url = `${environment.foroService}/temas`;
-    return this.post(url, tema);
-  }
-
-  findById(id: number) {
-    const url = `${environment.foroService}/temas/${id}`;
-    return this.get<Tema>(url);
+    return this.post<Tema>(url, tema);
   }
 
   deleteById(id: number) {
     const url = `${environment.foroService}/temas/${id}`;
     return this.delete(url);
+  }
+
+  aprobarTema(id: number, tema: Tema) {
+    const url = `${environment.foroService}/moderator/temas/${id}`;
+    return this.put<Tema>(url, tema);
+  }
+
+  updateTema(id: number, tema: Tema) {
+    const url = `${environment.foroService}/temas/${id}`;
+    return this.put<Tema>(url, tema);
   }
 }

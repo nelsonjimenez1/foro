@@ -11,7 +11,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListForoComponent implements OnInit {
   foros: Foro[];
-  selectedForo: Foro = new Foro('prueba');
+  selectedForo: Foro = new Foro('prueba', false);
 
 
   constructor(private foroRepo: ServiceForoService, private restClient: RestClientService, private router: Router) {}
@@ -46,14 +46,16 @@ export class ListForoComponent implements OnInit {
     }
 
   }
-  mirarForo(id: number){
-    if(id > -6){
+
+  mirarForo(id: number) {
+    if(id > -6) {
       this.router.navigate(["foro/view", id]);
-    }else{
+    }
+    else {
       alert("por favor seleccione un foro");
     }
-
   }
+
   logout() {
     this.restClient.logout().subscribe(data => {
         console.log("log out");

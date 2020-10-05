@@ -9,11 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CrearForoComponent implements OnInit {
   nombreForo = '';
+  check = false;
 
   constructor(private foroRepo: ServiceForoService) {}
 
   agregarForo(): void {
-    this.foroRepo.createForo(new Foro(this.nombreForo)).subscribe(
+    this.foroRepo.createForo(new Foro(this.nombreForo, this.check)).subscribe(
       results => {
         console.log(results);
       },

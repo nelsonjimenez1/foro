@@ -12,6 +12,10 @@ import { CrearTemaComponent } from './tema/crear-tema/crear-tema.component';
 import { CrearComentarioComponent } from './comentario/crear-comentario/crear-comentario.component';
 import { LoginComponent } from './login/login.component';
 import { RestClientService } from './services/rest-client.service';
+import { AprobarTemaComponent } from './tema/aprobar-tema/aprobar-tema.component';
+import { AprobarComentarioComponent } from './comentario/aprobar-comentario/aprobar-comentario.component';
+import { EditTemaComponent } from './tema/edit-tema/edit-tema.component';
+import { EditComentarioComponent } from './comentario/edit-comentario/edit-comentario.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +26,11 @@ import { RestClientService } from './services/rest-client.service';
     ViewTemaComponent,
     CrearTemaComponent,
     CrearComentarioComponent,
-    LoginComponent
+    LoginComponent,
+    AprobarTemaComponent,
+    AprobarComentarioComponent,
+    EditTemaComponent,
+    EditComentarioComponent
   ],
   imports: [
     BrowserModule,

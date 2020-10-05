@@ -1,0 +1,16 @@
+<p>aprobar-comentario works!</p>
+<div>
+  <ul>
+    <li *ngFor='let comentario of comentarios' (click)='selectComentario(comentario)'>
+      {{comentario.mensaje}}
+      <ul>
+        <li *ngFor='let comentarioR of comentario.idRespuestas' (click)='selectComentario2(comentarioR)'>
+          {{comentarioR.mensaje}}
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <button (click)='aprobarComentario(selectedComentario.id)'>Aprobar comentario</button>
+  <button (click)='rechazarComentario(selectedComentario.id)'>Rechazar comentario</button>
+  <button (click)='volver()'>volver</button>
+</div>

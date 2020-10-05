@@ -13,7 +13,7 @@ import { switchMap } from 'rxjs/operators';
 })
 export class ViewForoComponent implements OnInit {
   temas: Tema[];
-  foro: Foro = new Foro('prueba');
+  foro: Foro = new Foro('prueba', false);
   selectedTema: Tema = new Tema('prueba', 'prueba', new Date());
 
   constructor(
@@ -26,8 +26,14 @@ export class ViewForoComponent implements OnInit {
   loadTemas(): any {
     this.foroRepo.findAllTemas(this.foro.id).subscribe(
       results => {
+        let listaTemas = [];
         console.log(results);
-        this.temas = results;
+          results.map(elem => {
+            if (elem.aprobado) {
+              listaTemas.push(elem);
+            }
+          });
+        this.temas = listaTemas;
       },
       error => console.error(error)
     );
@@ -52,12 +58,72 @@ export class ViewForoComponent implements OnInit {
       alert("seleccione un tema");
     }
   }
-  mirarTema(id: number){
-    if(id > -6){
-      this.router.navigate(['/tema/view', id]);
-    }else{
+
+  mirarTema(id: number) {
+    if(id > -6) {
+      let moderado = null
+      if (this.foro.moderado) {
+        moderado = true;
+      }
+      else {
+        moderado = false;
+      }
+      this.router.navigate(['/tema/view', id, moderado]);
+    }
+    else {
       alert("por favor seleccione un tema ");
     }
+  }
+
+  editarTema(id: number) {
+    if(id > -6) {
+      let idT = this.selectedTema.id;
+      this.router.navigate(['/tema/edit', id, idT]);
+    }
+    else {
+      alert("por favor seleccione un tema ");
+    }
+  }
+
+  moverAprobarTemas(id: number) {
+    if(this.foro.moderado) {
+      this.router.navigate(['/tema/aprobar', id]);
+    }
+    else {
+      alert("el foro no es moderado");
+    }
+  }
+
+  subir(id: number) {
+    this.temaRepo.findById(id).subscribe(
+      results => {
+        results.ranking = results.ranking + 1;
+        this.temaRepo.updateTema(id, results).subscribe(
+          results2 => {
+            console.log(results2);
+            this.loadTemas();
+          },
+          error2 => console.error(error2)
+        );
+      },
+      error => console.error(error)
+    );
+  }
+
+  bajar(id: number) {
+    this.temaRepo.findById(id).subscribe(
+      results => {
+        results.ranking = results.ranking - 1;
+        this.temaRepo.updateTema(id, results).subscribe(
+          results2 => {
+            console.log(results2);
+            this.loadTemas();
+          },
+          error2 => console.error(error2)
+        );
+      },
+      error => console.error(error)
+    );
   }
 
   ngOnInit(): void {
