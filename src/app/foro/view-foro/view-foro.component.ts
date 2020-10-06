@@ -13,8 +13,9 @@ import { switchMap } from 'rxjs/operators';
 })
 export class ViewForoComponent implements OnInit {
   temas: Tema[];
+  fecha: Date =  new Date();
   foro: Foro = new Foro('prueba', false);
-  selectedTema: Tema = new Tema('prueba', 'prueba', new Date());
+  selectedTema: Tema = new Tema('prueba', 'prueba', this.fecha.toLocaleString());
 
   constructor(
     private foroRepo: ServiceForoService,

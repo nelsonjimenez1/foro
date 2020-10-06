@@ -12,7 +12,8 @@ import { switchMap } from 'rxjs/operators';
   styleUrls: ['./edit-tema.component.css']
 })
 export class EditTemaComponent implements OnInit {
-  tema: Tema = new Tema('prueba', 'prueba', new Date());
+  fecha: Date =  new Date();
+  tema: Tema = new Tema('prueba', 'prueba', this.fecha.toLocaleString());
   foro: Foro = new Foro('prueba', false);
 
   constructor(

@@ -2,7 +2,7 @@
 <div>
   <ul>
     <li *ngFor='let tema of temas' (click)='selectTema(tema)'>
-      {{tema.titulo}} <button (click)='subir(tema.id)'>+</button>  <button (click)='bajar(tema.id)'>-</button> {{tema.ranking}}
+      {{tema.titulo}}, {{tema.fecha}}, ranking: <button (click)='subir(tema.id)'>+</button>  <button (click)='bajar(tema.id)'>-</button> {{tema.ranking}}
     </li>
   </ul>
   <button (click)='mirarTema(selectedTema.id)'>Mirar tema</button>

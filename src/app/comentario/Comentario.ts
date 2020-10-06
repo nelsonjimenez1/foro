@@ -8,5 +8,5 @@ export class Comentario {
   public aprobado: boolean;
   public ranking = 0;
 
-  constructor(public mensaje:string, public fecha: Date) {}
+  constructor(public mensaje: string, public fecha: Date) {}
 }

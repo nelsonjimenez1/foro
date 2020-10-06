@@ -10,7 +10,7 @@ export class Tema{
 
   constructor(
     public titulo: string,
-    public descripcion : string,
-    public fecha : Date
+    public descripcion: string,
+    public fecha: string
   ) {}
 }

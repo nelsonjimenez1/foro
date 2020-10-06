@@ -13,7 +13,8 @@ import { switchMap } from 'rxjs/operators';
 })
 export class CrearComentarioComponent implements OnInit {
   mensaje = '';
-  tema: Tema = new Tema('prueba', 'prueba', new Date());
+  fecha: Date =  new Date();
+  tema: Tema = new Tema('prueba', 'prueba', this.fecha.toLocaleString());
   answerId: number;
 
   constructor(

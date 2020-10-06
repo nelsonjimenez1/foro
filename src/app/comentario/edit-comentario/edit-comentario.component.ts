@@ -12,8 +12,9 @@ import { switchMap } from 'rxjs/operators';
   styleUrls: ['./edit-comentario.component.css']
 })
 export class EditComentarioComponent implements OnInit {
+  fecha: Date =  new Date();
   comentario: Comentario = new Comentario('prueba', new Date());
-  tema: Tema = new Tema('prueba', 'prueba', new Date());
+  tema: Tema = new Tema('prueba', 'prueba', this.fecha.toLocaleString());
 
   constructor(
     private comentarioRepo: ServiceComentarioService,

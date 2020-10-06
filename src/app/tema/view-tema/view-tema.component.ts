@@ -14,11 +14,13 @@ import { switchMap } from 'rxjs/operators';
 })
 export class ViewTemaComponent implements OnInit {
   comentarios: Comentario[];
-  tema: Tema = new Tema('prueba', 'prueba', new Date());
+  fecha: Date =  new Date();
+  tema: Tema = new Tema('prueba', 'prueba', this.fecha.toLocaleString());
   selectedComentario: Comentario = new Comentario('prueba', new Date());
   moderado = false;
   selectedComentario2: Comentario = new Comentario('prueba', new Date());
   bool = false;
+
 
   constructor(
     private temaRepo: ServiceTemaService,

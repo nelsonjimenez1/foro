@@ -2,10 +2,10 @@
 <div>
   <ul>
     <li *ngFor='let comentario of comentarios' (click)='selectComentario(comentario)'>
-      {{comentario.mensaje}}
+      {{comentario.mensaje}}<p [hidden]="!comentario.aprobado">Aprobado</p> <P [hidden]="comentario.aprobado">no Aprobado aun</P>
       <ul>
         <li *ngFor='let comentarioR of comentario.idRespuestas' (click)='selectComentario2(comentarioR)'>
-          {{comentarioR.mensaje}}
+          {{comentarioR.mensaje}}<P [hidden]="comentarioR.aprobado">no Aprobado aun</P>
         </li>
       </ul>
     </li>

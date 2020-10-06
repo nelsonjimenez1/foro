@@ -14,7 +14,8 @@ import { switchMap } from 'rxjs/operators';
 })
 export class AprobarComentarioComponent implements OnInit {
   comentarios: Comentario[];
-  tema: Tema = new Tema('prueba', 'prueba', new Date());
+  fecha: Date =  new Date();
+  tema: Tema = new Tema('prueba', 'prueba', this.fecha.toLocaleString());
   selectedComentario: Comentario = new Comentario('prueba', new Date());
   selectedComentario2: Comentario = new Comentario('prueba', new Date());
   bool = false;
@@ -76,15 +77,20 @@ export class AprobarComentarioComponent implements OnInit {
 
   rechazarComentario(id: number): void {
     if(id > -6) {
-      let nComentario = this.selectedComentario;
-      nComentario.aprobado = false;
-      this.comentarioRepo.aprobarComentario(id, nComentario).subscribe(
-        results => {
-          console.log(results);
-          this.loadComentarios();
-        },
-        error => console.error(error)
-      );
+      if(this.selectedComentario.aprobado){
+        alert("el comentrario ya ha sido aprobado");
+      }else{
+        let nComentario = this.selectedComentario;
+        nComentario.aprobado = false;
+        this.comentarioRepo.aprobarComentario(id, nComentario).subscribe(
+          results => {
+            console.log(results);
+            this.loadComentarios();
+          },
+          error => console.error(error)
+        );
+      }
+
     }
     else {
       alert("por favor seleccione un comentario ");

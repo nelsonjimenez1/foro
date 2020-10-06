@@ -15,6 +15,7 @@ export class CrearTemaComponent implements OnInit {
   titulo = '';
   descripcion = '';
   foro: Foro = new Foro('prueba', false);
+  fecha: Date =  new Date();
 
   constructor(
     private temaRepo: ServiceTemaService,
@@ -24,7 +25,7 @@ export class CrearTemaComponent implements OnInit {
   ) { }
 
   agregarTema(): void {
-    let nTema =  new Tema(this.titulo, this.descripcion, new Date());
+    let nTema =  new Tema(this.titulo, this.descripcion, this.fecha.toLocaleString());
     nTema.foro = this.foro;
     nTema.aprobado = !this.foro.moderado;
     nTema.ranking = 0;
