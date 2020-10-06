@@ -5,10 +5,10 @@
       {{tema.titulo}}, {{tema.fecha}}, ranking: <button (click)='subir(tema.id)'>+</button>  <button (click)='bajar(tema.id)'>-</button> {{tema.ranking}}
     </li>
   </ul>
-  <button (click)='mirarTema(selectedTema.id)'>Mirar tema</button>
-  <button (click)='editarTema(selectedTema.id)'>Editar tema</button>
-  <button [routerLink]="['/tema/crear', foro.id]">Crear tema</button>
-  <button (click)='deleteTema(selectedTema.id)'>Eliminar Tema</button>
-  <button (click)='moverAprobarTemas(foro.id)'>Aprobar temas</button>
-  <button [routerLink]="['/foro/list']">volver</button>
+  <button class="boton2" (click)='mirarTema(selectedTema.id)'>Mirar tema</button>
+  <button class="boton2" (click)='editarTema(selectedTema.id)'>Editar tema</button>
+  <button class="boton2" [routerLink]="['/tema/crear', foro.id]">Crear tema</button>
+  <button class="boton2" (click)='deleteTema(selectedTema.id)'>Eliminar Tema</button>
+  <button class="boton2" (click)='moverAprobarTemas(foro.id)'>Aprobar temas</button>
+  <button class="boton2" [routerLink]="['/foro/list']">volver</button>
 </div>

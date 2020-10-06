@@ -1,0 +1,22 @@
+.principal{
+  background-color: #272c2f;
+  color: #fff;
+  padding-top: 30px;
+  min-height: 80px;
+  border-bottom: 5px solid #27a4e3;
+  margin: 0%;
+
+}
+.letra{
+  color: #27a4e3;
+}
+h1{
+  margin: 0%;
+  margin-left: 2%;
+  float: left;
+}
+h4, p{
+  margin: 0%;
+  margin-right: 2%;
+  float: right;
+}

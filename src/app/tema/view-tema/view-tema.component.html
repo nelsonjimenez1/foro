@@ -14,10 +14,10 @@
       </ul>
     </li>
   </ul>
-  <button [routerLink]="['/comentario/crear', tema.id, -6]">Crear comentario</button>
-  <button (click)='editarComentario(tema.id)'>Editar comentario</button>
-  <button (click)='answerComentario(selectedComentario.id, tema.id)'>responder comentario</button>
-  <button (click)='deleteComentario(selectedComentario.id)'>Eliminar comentario</button>
-  <button (click)='moverAprobarComentarios(tema.id)'>Aprobar comentarios</button>
-  <button [routerLink]="['/foro/view', tema.foro.id]">volver a foro</button>
+  <button class="boton2" [routerLink]="['/comentario/crear', tema.id, -6]">Crear comentario</button>
+  <button class="boton2" (click)='editarComentario(tema.id)'>Editar comentario</button>
+  <button class="boton2" (click)='answerComentario(selectedComentario.id, tema.id)'>responder comentario</button>
+  <button class="boton2" (click)='deleteComentario(selectedComentario.id)'>Eliminar comentario</button>
+  <button class="boton2" (click)='moverAprobarComentarios(tema.id)'>Aprobar comentarios</button>
+  <button class="boton2" [routerLink]="['/foro/view', tema.foro.id]">volver a foro</button>
 </div>
